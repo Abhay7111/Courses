@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios';
+import RefreshTwoToneIcon from '@mui/icons-material/RefreshTwoTone';
 
 function Links_Chunks() {
      const API = 'https://server-01-v2cx.onrender.com/getcourse';
-     const [data, setData] = useState(null);
+     const [data, setData] = useState('');
+     // const [error, setError] = useState(null);
 
      useEffect(() => {
           const fetchData = async () => {
@@ -14,9 +16,11 @@ function Links_Chunks() {
           fetchData();
      }, []);
 
+     const Loading = <div className='animate-spin bg-transparent flex items-center justify-center size-5 rounded-full'><RefreshTwoToneIcon/></div>;
+
   return (
-    <div className='w-full flex flex-col gap-4 items-center h-20 py-3 font-color'>
-     <h1 className='text-3xl font-medium w-full text-center'>Quick link</h1>
+    <div className='w-full flex flex-col gap-4 items-center py-3 font-color'>
+     <h1 className='text-3xl font-medium w-full text-center'>Quick link</h1> 
      <p className='w-full text-center opacity-60 font-light'>Easily access important pages, resources, and services, and services all in one place</p>
      <div className='w-full max-w-[1200px] grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3'>
           {data ? data.map((items, index) => (
@@ -29,7 +33,7 @@ function Links_Chunks() {
                          <NavLink to={`/course/${items._id}`} className='text-sm font-mono underline underline-offset-2 hover:text-blue-500 opacity-70 poppins'>Explore Now <i className='ri-arrow-right-line'></i></NavLink>
                     </div>
                </NavLink>
-          )) : <div className='text-lg font-light opacity-60'>Loading...</div>}
+          )) : <div className='text-lg font-light opacity-60'>{Loading}</div>}
      </div>
     </div>
   )

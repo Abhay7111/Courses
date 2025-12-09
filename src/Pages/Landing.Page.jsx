@@ -3,6 +3,7 @@ import Nav_Chunk from '../Components/Chunks/Nav.Chunk'
 import Header_Chunk from '../Components/Chunks/Header.Chunk'
 import Hero_Chunk from '../Components/Chunks/Hero.Chunk'
 import Links_Chunks from '../Components/Chunks/Links.Chunks';
+import Table_Chunk from '../Components/Chunks/Table.Chunk';
 
 function Landing_Page() {
      const [head] = useState(false);
@@ -14,6 +15,8 @@ function Landing_Page() {
      <Nav_Chunk/>
      <Hero_Chunk/>
      <Links_Chunks/>
+     <div className='flex items-center'></div>
+     <Table_Chunk/>
     </div>
   )
 }
