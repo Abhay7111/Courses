@@ -25,7 +25,7 @@ function Nav_Chunk() {
      }, []);
 
      return (
-          <div className={`${openNav ? 'w-40 items-start' : 'w-[55px] items-center'} h-screen bg-gradient-to-t from-[#452829]/10 to-[#E8D1C5]/30 border-r border-zinc-800 overflow-hidden flex flex-col justify-between p-3 gap-2 transition-all `}>
+          <div className={`${openNav ? 'w-40 items-start' : 'w-[55px] items-center'} rounded-md h-screen bg-gradient-to-t from-[#452829]/10 to-[#E8D1C5]/30 border-r border-zinc-800 overflow-hidden flex flex-col justify-between p-3 gap-2 transition-all `}>
                <div className={` w-full flex flex-col ${openNav ? 'items-start' : 'items-start '} gap-3 h-full`}>
                     <div className={`w-full flex ${openNav ? 'flex-row' : 'flex-col '} items-center justify-between`}>
                          <div className='w-10 h-11      rounded-md flex items-center justify-center'>

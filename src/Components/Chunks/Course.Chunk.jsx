@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 
 function Course_Chunk() {
     const { id } = useParams()
@@ -31,7 +31,7 @@ function Course_Chunk() {
                 }
             } catch (error) {
                 setData(null);
-                setError('Data not found');
+                setError('Data not found', error);
             } finally {
                 setLoading(false);
             }
@@ -54,23 +54,18 @@ function Course_Chunk() {
     }
 
     return (
-        <div className='text-white bg-green-400 overflow-y-auto max-w-[90%] overflow-hidden p-4'>
+        <div className='text-white bg-red-400 h-full overflow-y-auto w-full overflow-hidden p-4'>
+            <div className='w-full h-10 rounded-md overflow-x-auto flex items-start justify-start p-2'>
+                <div className='w-fit h-full flex items-center justify-start gap-0'>
+                    {subPosts.length > 0 ? subPosts.map((subPost, index) => (
+                <NavLink key={index} to={`${subPost._id}`} className={`text-sm flex-nowrap text-nowrap poppins bg-transparent hover:bg-zinc-700/50 border border-transparent hover:border-zinc-200/30 py-1 px-3 hover:text-zinc-100 rounded-lg`}>{subPost.title}</NavLink>
+            )) : <span className='text-red-500'>No chapters available</span>}
+                </div>
+            </div>
             <h1 className='text-2xl font-bold mb-4'>{data.title}</h1>
-            {Array.isArray(subPosts) && subPosts.length > 0 ? (
-                subPosts.map((sub, index) => (
-                    <div key={index} className='mb-4'>
-                        {/* For different possible structures, fallback to sensible keys */}
-                        <h2 className='text-xl font-bold mb-2'>
-                            {sub.subTitle || sub.title || sub.name || `subposts ${index + 1}`}
-                        </h2>
-                        <p className='text-base'>
-                            {sub.subDescription || sub.description || sub.desc || ''}
-                        </p>
-                    </div>
-                ))
-            ) : (
-                <div className='text-white'>No sub-posts available.</div>
-            )}
+            <div className='w-full h-full bg-green-400'>
+
+            </div>
         </div>
     );
 }

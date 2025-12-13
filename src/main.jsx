@@ -24,7 +24,7 @@ const Routes = () => {
       {path:'', element:<Home_Pages/>, children:[
         {path:'', element:<Home_Chunk/>},
         {path:'course',  children:[
-          {path:'', element:<Course_Chunk/>},
+          {path:'', element:<div className='text-white p-4'>Please select a course to view details.</div>},
           {path:':id', children:[
             {path:'' , element:<Course_Chunk/>},
             {path:':id', element:<Chapters_Chunk/>}
