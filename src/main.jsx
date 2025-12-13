@@ -11,6 +11,9 @@ import './Css/Fonts.css'
 import Landing_Page from './Pages/Landing.Page';
 import Root_Chunks from './Components/Dashboard/Chunks.Dashboard/Root.Chunks';
 import Home_Pages from './Components/Dashboard/Pages.Dashboard/Home.Pages';
+import Home_Chunk from './Components/Dashboard/Chunks.Dashboard/Home.Chunk';
+import Course_Chunk from './Components/Chunks/Course.Chunk';
+import Chapters_Chunk from './Components/Chunks/Chapters.Chunk';
 
 // ------------------- * # * ------------------- //
 
@@ -18,7 +21,16 @@ const Routes = () => {
   const routes = createBrowserRouter ([
     {path:'/', element:<Landing_Page/>},
     {path:'Dashboard', element:<Root_Chunks/>, children:[
-      {path:'', element:<Home_Pages/>},
+      {path:'', element:<Home_Pages/>, children:[
+        {path:'', element:<Home_Chunk/>},
+        {path:'course',  children:[
+          {path:'', element:<Course_Chunk/>},
+          {path:':id', children:[
+            {path:'' , element:<Course_Chunk/>},
+            {path:':id', element:<Chapters_Chunk/>}
+          ]}
+        ]}
+      ]},
     ]}
   ])
 

@@ -37,7 +37,7 @@ function Nav_Chunk() {
                     </div>
                     <ul className='flex flex-col gap-2 rounded-md overflow-auto h-full'>
                          {courses.length > 0 ? courses.map((course, index) => (
-                              <NavLink title={course.title} key={index} to={`/course/${course._id}`} className={`flex items-center flex-nowrap rounded-md gap-2 h-8 px-2 hover:scale-[1.03] ${openNav ? 'w-full justify-start' : 'w-8 justify-center'}`} ><i className={`${course.icon} text-[1.23rem]`}></i> { openNav && <h2 className='text-nowrap poppins text-sm'>{course.title}</h2>}</NavLink>
+                              <NavLink title={`${course.title}`} key={index} to={`course/${course._id}`} className={`flex items-center flex-nowrap rounded-md gap-2 h-8 px-2 hover:scale-[1.03] ${openNav ? 'w-full justify-start' : 'w-8 justify-center'}`} ><i className={`${course.icon} text-[1.23rem]`}></i> { openNav && <h2 className='text-nowrap poppins text-sm'>{course.title}</h2>}</NavLink>
                          )) : <div className='animate-spin bg-transparent flex items-center justify-center size-5 rounded-full'><RefreshTwoToneIcon/></div>}
                     </ul>
                </div>
