@@ -54,7 +54,7 @@ function Course_Chunk() {
     }
 
     return (
-        <div className='text-white bg-red-400 h-full overflow-y-auto w-full overflow-hidden p-4'>
+        <div className='text-white h-full overflow-y-auto w-full overflow-hidden p-4'>
             <div className='w-full h-10 rounded-md overflow-x-auto flex items-start justify-start p-2'>
                 <div className='w-fit h-full flex items-center justify-start gap-0'>
                     {subPosts.length > 0 ? subPosts.map((subPost, index) => (
