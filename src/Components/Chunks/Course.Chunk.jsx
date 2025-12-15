@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 
 function Course_Chunk() {
-    const { id } = useParams()
+    const { courseId } = useParams()
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
@@ -19,8 +19,8 @@ function Course_Chunk() {
                 const result = await response.json();
                 let course = null;
                 if (Array.isArray(result)) {
-                    course = result.find(item => item._id === id);
-                } else if (result && result._id === id) {
+                    course = result.find(item => item._id === courseId);
+                } else if (result && result._id === courseId) {
                     course = result;
                 }
                 if (course) {
@@ -37,7 +37,7 @@ function Course_Chunk() {
             }
         };
         fetchData();
-    }, [id]);
+    }, [courseId]);
 
     if (loading) return <div className='text-white'>Loading...</div>;
     if (error) return <div className='text-white'>Error: {error}</div>;
@@ -62,10 +62,8 @@ function Course_Chunk() {
             )) : <span className='text-red-500'>No chapters available</span>}
                 </div>
             </div>
-            <h1 className='text-2xl font-bold mb-4'>{data.title}</h1>
-            <div className='w-full h-full bg-green-400'>
-
-            </div>
+            <h1 className='text-2xl font-bold mb-4'>{data.title}</h1> 
+            <pre className="text-xs bg-zinc-800 text-white p-4 rounded-lg overflow-auto mt-4">{JSON.stringify(data, null, 2)}</pre>
         </div>
     );
 }

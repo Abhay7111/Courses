@@ -1,0 +1,135 @@
+/*
+  This CSS chunk is for styling Markdown content. 
+  It provides classes and element selectors for .markdown-style, which is used with ReactMarkdown components.
+  It handles headings, images, tables, links, lists, code, and utility classes for Markdown rendering.
+*/
+
+/* Prose/markdown style for prose prose-h1:w-fit mt-3 prose-img:max-w-[700px] prose-base prose-table:bg-white prose-table:w-fit prose-indigo max-w-full prose-table:my-2 prose-table:table prose-table:w-full prose-table:border prose-table:border-zinc-300 prose-th:border prose-th:border-zinc-300 prose-td:border prose-td:border-zinc-300 prose-td:p-2 prose-th:p-2 prose-table:text-left */
+
+/* --- MARKDOWN CSS CHUNK BEGIN --- */
+
+/* Base wrapper for Markdown */
+.markdown-style {
+  max-width: 100%;
+  color: inherit;
+  font-size: 1rem;
+}
+
+/* Headings */
+.markdown-style h1 {
+  margin-top: 0.75rem;
+  width: fit-content;
+}
+.markdown-style h2,
+.markdown-style h3,
+.markdown-style h4,
+.markdown-style h5,
+.markdown-style h6 {
+  margin-top: 0.75rem;
+}
+
+/* Images */
+.markdown-style img {
+  max-width: 700px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: all 0.4s;
+  display: block;
+  margin: 1rem 0;
+}
+.markdown-style img:hover {
+  border-radius: 25px;
+}
+
+/* Typography */
+.markdown-style p {
+  margin: 1em 0;
+}
+
+/* Tables */
+.markdown-style table {
+  width: 100%;
+  table-layout: auto;
+  margin: 0.5rem 0;
+  border-collapse: collapse;
+  border: 1px solid #bcbcbc86;
+  background: transparent;
+  color: inherit;
+}
+.markdown-style th,
+.markdown-style td {
+  border: 1px solid #d4d4d8;
+  padding: 0.5rem;
+  text-align: left;
+  background: transparent;
+  color: inherit;
+}
+
+/* Links */
+.markdown-style a {
+  color: #105ef0;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.5s;
+}
+.markdown-style a:hover {
+  color: #3e9bf1;
+}
+
+/* Lists */
+.markdown-style ul,
+.markdown-style ol {
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+.markdown-style ul {
+  padding-left: 1.25rem;
+  list-style-type: disc;
+}
+.markdown-style ol {
+  padding-left: 1.75rem;
+  list-style-type: decimal;
+}
+
+/* Code */
+.markdown-style code {
+  background: #181717b0;
+  color: #b1165e;
+  font-size: .95em;
+  padding: 0.15em 0.5em;
+  border-radius: 6px;
+}
+.markdown-style pre {
+  width: fit-content;
+  background: #1d1d1d;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+.markdown-style pre code {
+  color: #dfdede;
+  background: none;
+  font-size: 1em;
+  padding: 0;
+}
+
+/* Utility classes */
+.markdown-style-off img {
+  display: none;
+}
+.playwrite-ar {
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.Ubuntu {
+  font-family: "Ubuntu", serif;
+}
+
+/* --- MARKDOWN CSS CHUNK END --- */
+
+/*
+  End of Markdown content CSS chunk.
+*/
