@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react'
-import { NavLink, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
+import remarkGfm from 'remark-gfm';
+import ReactMarkdown from 'react-markdown';
 
 function Course_Chunk() {
     const { courseId } = useParams()
@@ -54,7 +56,7 @@ function Course_Chunk() {
     }
 
     return (
-        <div className='text-white h-full overflow-y-auto w-full overflow-hidden p-4'>
+        <div className='text-white h-full overflow-y-auto w-full overflow-hidden p-4 poppins'>
             <div className='w-full h-10 rounded-md overflow-x-auto flex items-start justify-start p-2'>
                 <div className='w-fit h-full flex items-center justify-start gap-0'>
                     {subPosts.length > 0 ? subPosts.map((subPost, index) => (
@@ -62,8 +64,14 @@ function Course_Chunk() {
             )) : <span className='text-red-500'>No chapters available</span>}
                 </div>
             </div>
-            <h1 className='text-2xl font-bold mb-4'>{data.title}</h1> 
-            <pre className="text-xs bg-zinc-800 text-white p-4 rounded-lg overflow-auto mt-4">{JSON.stringify(data, null, 2)}</pre>
+            <h1 className='text-2xl font-bold mb-4'>{data.title}</h1>
+            <div>
+            <div className="markdown-style bg-zinc-800/80 rounded p-4 mb-4 overflow-x-auto">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {data.description}
+                </ReactMarkdown>
+            </div>
+            </div>
         </div>
     );
 }

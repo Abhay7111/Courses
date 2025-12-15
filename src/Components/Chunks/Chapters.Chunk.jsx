@@ -118,7 +118,7 @@ function Chapters_Chunk() {
     }
 
     return (
-        <div className="text-white w-fit max-w-full h-full p-4 flex flex-col gap-4 overflow-y-auto">
+        <div className="text-white w-fit max-w-full h-full p-4 flex flex-col gap-4 overflow-y-auto poppins">
             {loading && (
                 <div className="text-lg text-zinc-300">Loading chapter...</div>
             )}

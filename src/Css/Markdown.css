@@ -11,22 +11,36 @@
 /* Base wrapper for Markdown */
 .markdown-style {
   max-width: 100%;
-  color: inherit;
+  color: #eeeeee;
   font-size: 1rem;
 }
 
 /* Headings */
 .markdown-style h1 {
-  margin-top: 0.75rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0.8rem;
   width: fit-content;
+  font-size: 2rem;
+  font-weight: bold;
 }
-.markdown-style h2,
+.markdown-style h2 {
+  margin-top: 1rem;
+  margin-bottom: 0.6rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 .markdown-style h3,
 .markdown-style h4,
 .markdown-style h5,
 .markdown-style h6 {
   margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
 }
+.markdown-style h3 { font-size: 1.25rem; }
+.markdown-style h4 { font-size: 1.1rem; }
+.markdown-style h5 { font-size: 1rem; }
+.markdown-style h6 { font-size: 0.95rem; }
 
 /* Images */
 .markdown-style img {
@@ -113,6 +127,11 @@
   background: none;
   font-size: 1em;
   padding: 0;
+}
+
+.markdown-style hr{
+  width: 100%;
+  color: #a8a8a8;
 }
 
 /* Utility classes */
