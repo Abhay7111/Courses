@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 // remark-gfm is removed since it is causing build errors
 
@@ -137,8 +137,15 @@ function Chapters_Chunk() {
                         course.subPosts.map((chapter, index) => (
                           <NavLink
                             key={chapter._id || index}
-                            to={`${chapter._id}`}
-                            className="text-sm flex-nowrap text-nowrap poppins bg-transparent hover:bg-zinc-700/50 border border-transparent hover:border-zinc-200/30 py-1 px-3 hover:text-zinc-100 rounded-lg"
+                            to={`../${chapter._id}`}
+                            className={({ isActive }) =>
+                              `text-sm flex-nowrap text-nowrap poppins bg-transparent hover:bg-zinc-700/50 border border-transparent hover:border-zinc-200/30 py-1 px-3 hover:text-zinc-100 rounded-lg
+                              ${
+                                isActive
+                                  ? 'bg-zinc-700/50 border-zinc-200/30 text-zinc-100'
+                                  : 'bg-green-400'
+                              }`
+                            }
                           >
                             {chapter.title}
                           </NavLink>
