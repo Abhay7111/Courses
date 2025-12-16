@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import remarkGfm from 'remark-gfm';
+// import remarkGfm from 'remark-gfm';
 import ReactMarkdown from 'react-markdown';
 
 function Course_Chunk() {
@@ -67,7 +67,7 @@ function Course_Chunk() {
             <h1 className='text-2xl font-bold mb-4'>{data.title}</h1>
             <div>
             <div className="markdown-style bg-zinc-800/80 rounded p-4 mb-4 overflow-x-auto">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                <ReactMarkdown>
                     {data.description}
                 </ReactMarkdown>
             </div>
