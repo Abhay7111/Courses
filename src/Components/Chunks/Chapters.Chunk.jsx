@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 // remark-gfm is removed since it is causing build errors
 
 function Chapters_Chunk() {
@@ -169,7 +170,7 @@ function Chapters_Chunk() {
                     </div>
                     {subPost.description && (
                         <div className="markdown-style bg-zinc-800/80 rounded p-4 mb-4 overflow-x-auto">
-                            <ReactMarkdown>
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
                                 {subPost.description}
                             </ReactMarkdown>
                         </div>
