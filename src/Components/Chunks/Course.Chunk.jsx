@@ -61,7 +61,7 @@ function Course_Chunk() {
                 <div className='w-fit h-full flex items-center justify-start gap-0'>
                     {subPosts.length > 0 ? subPosts.map((subPost, index) => (
                 <NavLink key={index} to={`${subPost._id}`} className={`text-sm flex-nowrap text-nowrap poppins bg-transparent hover:bg-zinc-700/50 border border-transparent hover:border-zinc-200/30 py-1 px-3 hover:text-zinc-100 rounded-lg`}>{subPost.title}</NavLink>
-            )) : <span className='text-red-500'>No chapters available</span>}
+                )) : <span className='text-red-500'>No chapters available</span>}
                 </div>
             </div>
             <h1 className='text-2xl font-bold mb-4'>{data.title}</h1>

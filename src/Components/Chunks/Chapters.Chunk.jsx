@@ -106,16 +106,17 @@ function Chapters_Chunk() {
     }, [courseId, subPostId]);
 
     // Get the number of chapters in the course (if available)
-    let chapterCount = null;
-    if (course) {
-        if (Array.isArray(course.subPosts)) {
-            chapterCount = course.subPosts.length;
-        } else if (Array.isArray(course.subposts)) {
-            chapterCount = course.subposts.length;
-        } else if (Array.isArray(course.subCourse)) {
-            chapterCount = course.subCourse.length;
-        }
-    }
+    // let chapterCount = null;
+    // if (course) {
+    //     if (Array.isArray(course.subPosts)) {
+    //       chapterCount = course.subPosts.length;
+    //     } else if (Array.isArray(course.subposts)) {
+    //       chapterCount = course.subposts.length;
+    //     } 
+    //     else if (Array.isArray(course.subCourse)) {
+    //       chapterCount = course.subCourse.length;
+    //     }
+    // }
 
     return (
         <div className="text-white w-fit max-w-full h-full p-4 flex flex-col gap-4 overflow-y-auto poppins">
@@ -130,6 +131,23 @@ function Chapters_Chunk() {
             )}
             {!loading && !error && subPost && (
                 <div>
+                  <div className='w-full h-10 rounded-md overflow-x-auto flex items-start justify-start p-2'>
+                    <div className='w-fit h-full flex items-center justify-start gap-0'>
+                      {course && Array.isArray(course.subPosts) && course.subPosts.length > 0 ? (
+                        course.subPosts.map((chapter, index) => (
+                          <NavLink
+                            key={chapter._id || index}
+                            to={`${chapter._id}`}
+                            className="text-sm flex-nowrap text-nowrap poppins bg-transparent hover:bg-zinc-700/50 border border-transparent hover:border-zinc-200/30 py-1 px-3 hover:text-zinc-100 rounded-lg"
+                          >
+                            {chapter.title}
+                          </NavLink>
+                        ))
+                      ) : (
+                        <span className='text-red-500'>No chapters available</span>
+                      )}
+                    </div>
+                  </div>
                     <div>
                         {/* Show course name if available */}
                         <div className='w-full flex items-center gap-3 mb-4'>
