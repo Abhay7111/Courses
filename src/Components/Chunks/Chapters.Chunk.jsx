@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-// remark-gfm is removed since it is causing build errors
+
+// Fix: Use remark-gfm for markdown tables, avoid overriding table renderers
+// This enables markdown table support "out of the box" and avoids breaking default behavior
 
 function Chapters_Chunk() {
-    // Explicit params from the route: /Dashboard/course/:courseId/:chapterId
     const { courseId, chapterId } = useParams();
     const subPostId = chapterId;
 
     const [subPost, setSubPost] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [course, setCourse] = useState(null);
 
     useEffect(() => {
         if (!subPostId) {
@@ -28,7 +28,6 @@ function Chapters_Chunk() {
 
         const fetchSubPost = async () => {
             try {
-                // Try to fetch the specific subpost (chapter) by _id or id
                 let res = await fetch(`https://server-01-v2cx.onrender.com/getsubpost?_id=${subPostId}`);
                 if (!res.ok) {
                     res = await fetch(`https://server-01-v2cx.onrender.com/getsubpost?id=${subPostId}`);
@@ -53,15 +52,15 @@ function Chapters_Chunk() {
                         foundCourse = courseData;
                     }
                     if (foundCourse) {
-                        setCourse(foundCourse);
-                        // Try all possible subX keys
-                        const subPostsArray = Array.isArray(foundCourse.subPosts)
-                            ? foundCourse.subPosts
-                            : Array.isArray(foundCourse.subposts)
-                                ? foundCourse.subposts
-                                : Array.isArray(foundCourse.subCourse)
-                                    ? foundCourse.subCourse
-                                    : [];
+                        // Try all possible subX keys, apply sorting if subPosts present
+                        let subPostsArray = [];
+                        if (Array.isArray(foundCourse.subPosts)) {
+                            subPostsArray = foundCourse.subPosts;
+                        } else if (Array.isArray(foundCourse.subposts)) {
+                            subPostsArray = foundCourse.subposts;
+                        } else if (Array.isArray(foundCourse.subCourse)) {
+                            subPostsArray = foundCourse.subCourse;
+                        }
                         const found = subPostsArray.find(sp => sp._id === subPostId || sp.id === subPostId);
                         if (found) {
                             setSubPost(found);
@@ -83,44 +82,11 @@ function Chapters_Chunk() {
             }
         };
 
-        // Fetch the parent course for reference if needed (for .length, etc)
-        const fetchCourse = async () => {
-            try {
-                let courseRes = await fetch('https://server-01-v2cx.onrender.com/getcourse');
-                if (courseRes.ok) {
-                    const courseData = await courseRes.json();
-                    let foundCourse = null;
-                    if (Array.isArray(courseData)) {
-                        foundCourse = courseData.find(item => item._id === courseId);
-                    } else if (courseData && courseData._id === courseId) {
-                        foundCourse = courseData;
-                    }
-                    setCourse(foundCourse || null);
-                }
-            } catch {
-                // Ignore course error here, we handle main error in fetchSubPost
-            }
-        };
-
-        fetchCourse();
         fetchSubPost();
     }, [courseId, subPostId]);
 
-    // Get the number of chapters in the course (if available)
-    // let chapterCount = null;
-    // if (course) {
-    //     if (Array.isArray(course.subPosts)) {
-    //       chapterCount = course.subPosts.length;
-    //     } else if (Array.isArray(course.subposts)) {
-    //       chapterCount = course.subposts.length;
-    //     } 
-    //     else if (Array.isArray(course.subCourse)) {
-    //       chapterCount = course.subCourse.length;
-    //     }
-    // }
-
     return (
-        <div className="text-white w-fit max-w-full h-full p-4 flex flex-col gap-4 overflow-y-auto poppins">
+        <div className="text-white max-w-full h-full p-4 flex flex-col gap-4 overflow-y-auto poppins">
             {loading && (
                 <div className="text-lg text-zinc-300">Loading chapter...</div>
             )}
@@ -130,51 +96,15 @@ function Chapters_Chunk() {
             {!loading && !error && !subPost && (
                 <div className="text-yellow-300">No chapter data found.</div>
             )}
-            {!loading && !error && subPost && (
-                <div>
-                  <div className='w-full h-10 rounded-md overflow-x-auto flex items-start justify-start p-2'>
-                    <div className='w-fit h-full flex items-center justify-start gap-0'>
-                      {course && Array.isArray(course.subPosts) && course.subPosts.length > 0 ? (
-                        course.subPosts.map((chapter, index) => (
-                          <NavLink
-                            key={chapter._id || index}
-                            to={`../${chapter._id}`}
-                            className={({ isActive }) =>
-                              `text-sm flex-nowrap text-nowrap poppins bg-transparent hover:bg-zinc-700/50 border border-transparent hover:border-zinc-200/30 py-1 px-3 hover:text-zinc-100 rounded-lg
-                              ${
-                                isActive
-                                  ? 'bg-zinc-700/50 border-zinc-200/30 text-zinc-100'
-                                  : 'bg-green-400'
-                              }`
-                            }
-                          >
-                            {chapter.title}
-                          </NavLink>
-                        ))
-                      ) : (
-                        <span className='text-red-500'>No chapters available</span>
-                      )}
-                    </div>
-                  </div>
-                    <div>
-                        {/* Show course name if available */}
-                        <div className='w-full flex items-center gap-3 mb-4'>
-                        {course && course.title && (
-                            <h1 className="text-2xl font-bold text-zinc-200">{course.title} - </h1>
-                        )}
-                        <h2 className="text-md font-medium">{subPost.title || 'Untitled'}</h2>
-                        </div>
-                        {/* {chapterCount !== null && (
-                            <h2 className="text-md text-zinc-400 mb-2">{chapterCount} chapter{chapterCount !== 1 ? "s" : ""} in this course</h2>
-                        )} */}
-                    </div>
-                    {subPost.description && (
-                        <div className="markdown-style bg-zinc-800/80 rounded p-4 mb-4 overflow-x-auto">
-                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                {subPost.description}
-                            </ReactMarkdown>
-                        </div>
-                    )}
+            {!loading && !error && subPost && subPost.description && (
+                <div className="markdown-style bg-zinc-800/80 rounded p-4 mb-4">
+                    <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        // Use classNames with markdown-style in CSS to style tables globally
+                        // Optionally, add more components here if you want finer control
+                    >
+                        {subPost.description}
+                    </ReactMarkdown>
                 </div>
             )}
         </div>

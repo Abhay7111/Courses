@@ -15,6 +15,7 @@ import Home_Pages from './Components/Dashboard/Pages.Dashboard/Home.Pages';
 import Home_Chunk from './Components/Dashboard/Chunks.Dashboard/Home.Chunk';
 import Course_Chunk from './Components/Chunks/Course.Chunk';
 import Chapters_Chunk from './Components/Chunks/Chapters.Chunk';
+import Main_Chapter_Chunk from './Components/Dashboard/Chunks.Dashboard/Main.Chapter.Chunk';
 
 // ------------------- * # * ------------------- //
 
@@ -27,8 +28,11 @@ const Routes = () => {
         {path:'course',  children:[
           {path:'', element:<div className='text-white p-4'>Please select a course to view details.</div>},
           {path:':courseId', children:[
-            {path:'' , element:<Course_Chunk/>},
-            {path:':chapterId', element:<Chapters_Chunk/>}
+            {path:'' , element:<Main_Chapter_Chunk/>, children:[
+              {path:'', element:<Course_Chunk/>},
+              {path:':chapterId', element:<Chapters_Chunk/>},
+            ]
+            },
           ]}
         ]}
       ]},

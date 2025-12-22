@@ -5,9 +5,13 @@ import { Outlet } from 'react-router-dom'
 
 function Home_Pages() {
   return (
-    <div className=' w-full h-screen bg-zinc-900 flex items-start justify-start gap-4 overflow-hidden p-1'>
+    <div className=' w-full h-screen flex items-start justify-start gap-4 overflow-hidden p-1'>
+     <div>
      <Nav_Chunk/>
-     <Outlet/>
+     </div>
+     <div className='w-full h-screen'>
+      <Outlet/>
+     </div>
     </div>
   )
 }
