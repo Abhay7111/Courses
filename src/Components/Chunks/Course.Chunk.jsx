@@ -30,9 +30,6 @@ function Course_Chunk() {
                     setData(null);
                     setError('Course not found');
                 }
-            } catch (error) {
-                setData(null);
-                setError('Data not found');
             } finally {
                 setLoading(false);
             }

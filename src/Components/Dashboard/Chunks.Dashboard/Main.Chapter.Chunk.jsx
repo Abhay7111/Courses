@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Outlet, NavLink, useLocation } from 'react-router-dom';
+import { useParams, Outlet, NavLink } from 'react-router-dom';
 
 function Main_Chapter_Chunk() {
   const { courseId, chapterId } = useParams();
@@ -66,12 +66,6 @@ function Main_Chapter_Chunk() {
             setChapters([]);
             setError("Failed to load course");
           }
-        }
-      } catch (err) {
-        if (!ignore) {
-          setCourse(null);
-          setChapters([]);
-          setError("Failed to load chapters");
         }
       } finally {
         if (!ignore) setLoading(false);

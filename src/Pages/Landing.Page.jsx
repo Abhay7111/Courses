@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Nav_Chunk from '../Components/Chunks/Nav.Chunk'
 import Header_Chunk from '../Components/Chunks/Header.Chunk'
 import Hero_Chunk from '../Components/Chunks/Hero.Chunk'
@@ -6,17 +6,16 @@ import Links_Chunks from '../Components/Chunks/Links.Chunks';
 import Table_Chunk from '../Components/Chunks/Table.Chunk';
 
 function Landing_Page() {
-     const [head] = useState(false);
+     const [head] = useState(null);
   return (
     <div className='w-full min-h-screen flex flex-col items-center justify-start gap-2 p-2'>
-     <div className={`max-h-12 w-full bg-green-400`}>
-          {head && <Header_Chunk/>}
-     </div>
-     <Nav_Chunk/>
-     <Hero_Chunk/>
-     <Links_Chunks/>
-     <div className='flex items-center'></div>
-     <Table_Chunk/>
+      <div className={`max-h-12 w-full bg-green-400`}>
+        {head && <Header_Chunk/>}
+      </div>
+      <Nav_Chunk/>
+      <Hero_Chunk/>
+      <Links_Chunks/>
+      <Table_Chunk/>
     </div>
   )
 }
