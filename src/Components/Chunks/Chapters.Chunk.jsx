@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-// import remarkGfm from 'remark-gfm';
+import remarkGfm from 'remark-gfm';
 
 // Fix: Use remark-gfm for markdown tables, avoid overriding table renderers
 // This enables markdown table support "out of the box" and avoids breaking default behavior
@@ -99,7 +99,7 @@ function Chapters_Chunk() {
             {!loading && !error && subPost && subPost.description && (
                 <div className="markdown-style bg-zinc-800/80 rounded p-4 mb-4">
                     <ReactMarkdown
-                        // remarkPlugins={[remarkGfm]}
+                        remarkPlugins={[remarkGfm]}
                         // Use classNames with markdown-style in CSS to style tables globally
                         // Optionally, add more components here if you want finer control
                     >
