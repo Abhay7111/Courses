@@ -45,7 +45,7 @@ function Course_Chunk() {
         <div className='text-white h-full overflow-y-auto w-full overflow-hidden p-4 poppins'>
             <h1 className='text-2xl font-bold mb-4'>{data.title}</h1>
             <div>
-                <div className="markdown-style bg-zinc-800/80 rounded p-4 mb-4 overflow-x-auto">
+                <div className="markdown-style rounded p-4 mb-4 overflow-x-auto">
                     <ReactMarkdown>
                         {data.description}
                     </ReactMarkdown>

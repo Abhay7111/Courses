@@ -97,8 +97,8 @@ function Main_Chapter_Chunk() {
   };
 
   return (
-    <div className="text-white w-fit max-w-[85%] md:max-w-full h-full flex flex-col overflow-hidden poppins">
-      <div className='w-full flex items-center'>
+    <div className="text-white w-fit max-w-[95%] md:max-w-full h-full flex overflow-hidden poppins">
+      {/* <div className='w-full flex items-center'>
         <h1 className="text-2xl font-bold text-zinc-200">
           {loading
             ? "Loading..."
@@ -106,11 +106,14 @@ function Main_Chapter_Chunk() {
             ? error
             : courseName}
         </h1>
-      </div>
+      </div> */}
       {/* Render chapter nav if chapters exist */}
       {(!loading && !error && chapters.length > 0) && (
-        <div className='w-full h-10 rounded-md overflow-x-auto flex items-start justify-start p-2'>
-          <div className='w-fit h-full flex items-center justify-start flex-nowrap text-nowrap gap-1'>
+        <div className='min-w-32 w-fit max-w-60 rounded-md overflow-y-scroll overflow-x-hidden'>
+          <div className='w-fit h-fit flex flex-col items-start justify-start text-nowrap overflow-hidden gap-1'>
+          <div className='w-full h-10 bg-transparent flex items-center justify-start px-1'>
+            <h2>Chapters</h2>
+          </div>
             {chapters.map((chapter, idx) => {
               const pageNum = chapter.page || (idx + 1);
               return (
@@ -118,11 +121,11 @@ function Main_Chapter_Chunk() {
                   key={chapter._id || chapter.id || idx}
                   to={`${chapter._id || chapter.id}`}
                   className={({ isActive }) =>
-                    `text-sm flex-nowrap poppins py-0.5 px-1.5 hover:text-zinc-100 rounded-md
+                    `text-sm font-light poppins py-0.5 px-1.5 hover:text-zinc-100 rounded-md
                     ${
                       isActive || isChapterActive(chapter)
-                        ? 'bg-zinc-700/50 border-zinc-200/10 text-zinc-100'
-                        : 'bg-transparent border border-transparent hover:border-zinc-500/20'
+                        ? 'bg-zinc-700/50 border-zinc-200/20 border text-zinc-100'
+                        : 'bg-transparent text-zinc-500 border border-transparent hover:border-zinc-500/10 transition-all duration-300'
                     }`
                   }
                   title={`${chapter.title ? chapter.title + ' - ' : ''}${getOrdinal(pageNum)}`}

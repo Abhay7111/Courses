@@ -11,8 +11,10 @@
 /* Base wrapper for Markdown */
 .markdown-style {
   max-width: 100%;
-  color: #eeeeee;
+  color: #d8d8d8;
   font-size: 1rem;
+  font-weight: 300;
+  background-color: transparent;
 }
 
 /* Headings */
@@ -26,8 +28,8 @@
 .markdown-style h2 {
   margin-top: 1rem;
   margin-bottom: 0.6rem;
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.7rem;
+  font-weight: 600;
 }
 .markdown-style h3,
 .markdown-style h4,
@@ -35,7 +37,7 @@
 .markdown-style h6 {
   margin-top: 0.75rem;
   margin-bottom: 0.5rem;
-  font-weight: bold;
+  font-weight: 500;
 }
 .markdown-style h3 { font-size: 1.25rem; }
 .markdown-style h4 { font-size: 1.1rem; }
@@ -45,8 +47,10 @@
 /* Images */
 .markdown-style img {
   max-width: 700px;
-  width: 100%;
+  width: fit;
   height: auto;
+  max-height: 500px;
+  object-fit: contain;
   border-radius: 10px;
   transition: all 0.4s;
   display: block;
@@ -58,7 +62,9 @@
 
 /* Typography */
 .markdown-style p {
-  margin: 1em 0;
+  margin: 0.9em 0;
+  text-indent: 5px;
+  font-size: 16px;
 }
 
 /* Tables */
@@ -82,13 +88,12 @@
 
 /* Links */
 .markdown-style a {
-  color: #105ef0;
-  text-decoration: underline;
+  color: #739ff1;
   font-weight: 500;
   transition: color 0.5s;
 }
 .markdown-style a:hover {
-  color: #3e9bf1;
+  color: #2d89df;
 }
 
 /* Lists */
