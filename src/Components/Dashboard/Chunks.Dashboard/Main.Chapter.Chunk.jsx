@@ -7,6 +7,7 @@ function Main_Chapter_Chunk() {
   const [chapters, setChapters] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [openChapterName, setOpenChapterName] = useState(true);
 
   // Util: sort subPosts as in Chapters_Chunk
   function sortSubPosts(arr) {
@@ -76,8 +77,7 @@ function Main_Chapter_Chunk() {
   }, [courseId]);
 
   // Helper: get course name (matches Chapters.Chunk style)
-  const courseName =
-    (course && (course.title || course.name)) || "Unnamed Course";
+  const courseName = (course && (course.title || course.name)) || "Unnamed Course";
 
   // Helper: ordinal
   const getOrdinal = (num) => {
@@ -97,7 +97,7 @@ function Main_Chapter_Chunk() {
   };
 
   return (
-    <div className="text-white w-fit max-w-[95%] md:max-w-full h-full flex overflow-hidden poppins">
+    <div className="text-white w-full md:max-w-full h-full flex overflow-hidden poppins">
       {/* <div className='w-full flex items-center'>
         <h1 className="text-2xl font-bold text-zinc-200">
           {loading
@@ -109,19 +109,24 @@ function Main_Chapter_Chunk() {
       </div> */}
       {/* Render chapter nav if chapters exist */}
       {(!loading && !error && chapters.length > 0) && (
-        <div className='min-w-32 w-fit max-w-60 rounded-md overflow-y-scroll overflow-x-hidden'>
-          <div className='w-fit h-fit flex flex-col items-start justify-start text-nowrap overflow-hidden gap-1'>
-          <div className='w-full h-10 bg-transparent flex items-center justify-start px-1'>
-            <h2>Chapters</h2>
+        <div className={`${openChapterName ? 'w-60' : 'w-20'} lg:min-w-fit px-1.5 transition-all duration-300 relative rounded-md overflow-y-scroll overflow-x-visible`}>
+          <div
+            onClick={() => setOpenChapterName(prev => !prev)}
+            className=' lg:hidden absolute w-5 h-5 rounded-full bg-green-400/20 right-0 top-2 flex items-center justify-center'>
+            <i className={`${openChapterName ? 'ri-arrow-left-line' : 'ri-arrow-right-line'}`}></i>
           </div>
-            {chapters.map((chapter, idx) => {
-              const pageNum = chapter.page || (idx + 1);
+          <div className=' h-fit flex flex-col items-start justify-start text-nowrap overflow-hidden gap-1'>
+            <div className='w-full h-10 bg-transparent flex items-center justify-start px-1'>
+              <h2>Chapters</h2>
+            </div>
+            {chapters.map((chapter, index) => {
+              const pageNum = chapter.page || (index + 1);
               return (
                 <NavLink
-                  key={chapter._id || chapter.id || idx}
+                  key={chapter._id || chapter.id || index}
                   to={`${chapter._id || chapter.id}`}
                   className={({ isActive }) =>
-                    `text-sm font-light poppins py-0.5 px-1.5 hover:text-zinc-100 rounded-md
+                    `text-sm w-fit font-light poppins py-0.5 px-1.5 hover:text-zinc-100 rounded-md
                     ${
                       isActive || isChapterActive(chapter)
                         ? 'bg-zinc-700/50 border-zinc-200/20 border text-zinc-100'
@@ -131,7 +136,7 @@ function Main_Chapter_Chunk() {
                   title={`${chapter.title ? chapter.title + ' - ' : ''}${getOrdinal(pageNum)}`}
                   end={false}
                 >
-                  {chapter.title}
+                  <p className='w-fit'>{chapter.title}</p>
                 </NavLink>
               );
             })}

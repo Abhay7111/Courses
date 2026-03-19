@@ -105,6 +105,9 @@ function Chapters_Chunk() {
                     >
                         {subPost.description}
                     </ReactMarkdown>
+                    <div className='w-full opacity-40 border-t mt-4'>
+                        <p> <span className='text-sm'>Page:</span> <span className='text-sm font-medium'>{subPost.page || 1}</span></p>
+                    </div>
                 </div>
             )}
         </div>
