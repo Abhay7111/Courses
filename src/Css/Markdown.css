@@ -5,13 +5,23 @@
 */
 
 /* Prose/markdown style for prose prose-h1:w-fit mt-3 prose-img:max-w-[700px] prose-base prose-table:bg-white prose-table:w-fit prose-indigo max-w-full prose-table:my-2 prose-table:table prose-table:w-full prose-table:border prose-table:border-zinc-300 prose-th:border prose-th:border-zinc-300 prose-td:border prose-td:border-zinc-300 prose-td:p-2 prose-th:p-2 prose-table:text-left */
+:root {
+  --markdown-color: #fff;
+  --pre-color: #ecdf66;
+  --code-color: #ec965c;
+
+  --table-background: #2d2d2d;
+
+  --Link-color: #739ff1;
+  --hover-Link-color: #2d89df;
+}
 
 /* --- MARKDOWN CSS CHUNK BEGIN --- */
 
 /* Base wrapper for Markdown */
 .markdown-style {
   max-width: 100%;
-  color: #d8d8d8;
+  color: var(--markdown-color);
   font-size: 1rem;
   font-weight: 300;
   background-color: transparent;
@@ -75,7 +85,7 @@
   margin: 0.5rem 0;
   border-collapse: collapse;
   border: 1px solid #bcbcbc86;
-  background: transparent;
+  background: var(--table-background, transparent);
   color: inherit;
 }
 .markdown-style th,
@@ -89,12 +99,12 @@
 
 /* Links */
 .markdown-style a {
-  color: #739ff1;
+  color: var(--Link-color);
   font-weight: 500;
   transition: color 0.5s;
 }
 .markdown-style a:hover {
-  color: #2d89df;
+  color: var(--hover-Link-color);
 }
 
 /* Lists */
@@ -115,7 +125,7 @@
 /* Code */
 .markdown-style code {
   background: #181717b0;
-  color: #b1165e;
+  color: var(--code-color);
   font-size: .95em;
   padding: 0.15em 0.5em;
   border-radius: 6px;
@@ -129,7 +139,7 @@
   margin: 1rem 0;
 }
 .markdown-style pre code {
-  color: #dfdede;
+  color: var(--pre-color);
   background: none;
   font-size: 1em;
   padding: 0;

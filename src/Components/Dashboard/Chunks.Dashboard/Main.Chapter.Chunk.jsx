@@ -109,7 +109,7 @@ function Main_Chapter_Chunk() {
       </div> */}
       {/* Render chapter nav if chapters exist */}
       {(!loading && !error && chapters.length > 0) && (
-        <div className={`${openChapterName ? 'w-60' : 'w-20'} lg:min-w-fit px-1.5 transition-all duration-300 relative rounded-md overflow-y-scroll overflow-x-visible`}>
+        <div className={`${openChapterName ? 'w-60' : 'w-20'} lg:min-w-fit lg:w-fit px-1.5 transition-all duration-300 relative rounded-md overflow-y-scroll overflow-x-visible`}>
           <div
             onClick={() => setOpenChapterName(prev => !prev)}
             className=' lg:hidden absolute w-5 h-5 rounded-full bg-green-400/20 right-0 top-2 flex items-center justify-center'>
